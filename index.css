@@ -47,27 +47,24 @@ footer {
 }
 /*div separando o carrosel de produtos da loja*/
 #scarrossel{
-    display: block;
     position: relative;
-    width: 1000px;
+    width: 100%;
     height: auto;
     overflow: hidden;
     border: 2px solid #cc2727;
-    background-color: rgb(0, 0, 0);
     margin: 0 0;
 }
 /*div contendo cada produto(div.seção)*/
 #produtos{
     display: flex;
     transition: transform 0.5s ease-in-out;
-    background-color: #126e62;
     height: auto;
-    width: 100%;
     justify-content: space-around;
 }
 /*Contém 'img', 'h2' e 'p'*/
 .seção {
     min-width: 10%;
+    margin-right: 25px;
     box-sizing: border-box;
 }
 .seção img {
@@ -82,20 +79,24 @@ footer {
     border: 2px solid #333;
     background-color: white;
     margin: 0 0;
+    height: 500px;
 }
 /*Container dos slides de carrossel*/
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    height: 100%;
 }
 /*Cada slide de carrosel div.carousel-slide*/
 .carousel-slide {
     min-width: 100%;
+    
     box-sizing: border-box;
 }
 
 .carousel-slide img {
     width: 100%;
+    height: 100%;
     display: block;
 }
 

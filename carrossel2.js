@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //lógica para atualizar o container dos produtos
     function update() {
         const section = document.querySelector('#produtos');
-        section.style.transform = `translateX(${-currentSlide * 45}%)`;
+        section.style.transform = `translateX(${-currentSlide * 5}%)`;
     }
     //lógica botão de voltar
     anterior.addEventListener('click', () => {
