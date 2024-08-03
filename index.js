@@ -119,10 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
     produtos_variados.forEach(pred => {
     const div = document.createElement('div');
     div.className = `seção`
+    div.setAttribute('preco', pred.preco)
+    div.setAttribute('nome', pred.name)
+    div.setAttribute('img', pred.src)
     div.innerHTML = `
     <img src=${pred.src} />
     <h2>${pred.name}</h2>
     <p>R$${pred.preco}</p>
+    <button class="add"> Adicionar ao carrinho </button>
     `;
     produtos.appendChild(div)
     });
