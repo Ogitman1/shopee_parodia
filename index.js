@@ -122,11 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
     div.setAttribute('preco', pred.preco)
     div.setAttribute('nome', pred.name)
     div.setAttribute('img', pred.src)
+    div.style.margin = "10px 10px"
     div.innerHTML = `
-    <img src=${pred.src} />
-    <h2>${pred.name}</h2>
+    <img src="${pred.src}" />
+    <h2 style="font-syze: 10px">${pred.name}</h2>
     <p>R$${pred.preco}</p>
-    <button class="add"> Adicionar ao carrinho </button>
+    <button class="add" style="cursor: pointer; background-color: #00ff00; border-color: transparent; border-radius: 8px; padding: '10px 3px' "> Adicionar ao carrinho </button>
     `;
     produtos.appendChild(div)
     });
