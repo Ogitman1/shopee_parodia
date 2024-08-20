@@ -45,16 +45,54 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Casaco de moletom listrado',
             preco: '52,04'
         },
+        {
+            img: 'https://down-br.img.susercontent.com/file/sg-11134201-7rd4t-lwfvm7c1yrquca',
+            name: 'Kit 5 pijamas baby dool MICRO short dool',
+            preco: '49,00'
+        },
+        {
+            img: 'https://down-br.img.susercontent.com/file/br-11134207-7r98o-lkr21clgu6qg6b',
+            name: 'Balança Digital Medidora Corporal Bioimpedância até 180kg',
+            preco: '39,99'
+        },
+        {
+            img: 'https://down-br.img.susercontent.com/file/br-11134207-7r98o-lsh741a5pulgf0',
+            name: 'Monte Seu Conjunto Com Cesto Telado 60 Litros ',
+            preco: '62,98'
+        },
+        {
+            img: 'https://down-br.img.susercontent.com/file/br-11134207-7r98q-lm1rz739leejdb',
+            name: 'Kit 7 Pecas Bolsa Organizadoras Para Mala Roupas Bagagem Viagem ',
+            preco: '37,90'
+        },
+        {
+            img: 'https://down-br.img.susercontent.com/file/br-11134207-7r98s-ll49whqy42t8d7',
+            name: 'calça jeans feminina wide leg infantil juvenil com escritas estampada',
+            preco: '39,99'
+        },
+        {
+            img: 'https://down-br.img.susercontent.com/file/br-11134207-7r98o-lto9hs9c9fjzdd',
+            name: 'Kit 19 Peças Jogo de Utensílios Para Cozinha em Silicone Com Cabo de Madeira Completo / Antiaderente e Resistente ao Calor',
+            preco: '79,99'
+        },
+        {
+            img: 'https://down-br.img.susercontent.com/file/br-11134207-7qukw-lka6xpdypz2h47',
+            name: 'Kit 10 Cuecas Box Boxer Qualidade Garantida Preço Baixo',
+            preco: '40,99'
+        }
     ]
     const secao = document.getElementById('display');
     secao.style.height = "auto"
     secao.style.width = "auto"
-    produtos.forEach((prd) => {
+    produtos.forEach((prd,index) => {
         const div = document.createElement('div');
         div.setAttribute('name', prd.name);
         div.setAttribute('preco', prd.preco);
         div.setAttribute('img', prd.img);
-        div.className = "produto";
+        div.id = "produto";
+        if(index >=4){
+            div.className = "hidden";
+        }
         div.style.height = "500px";
         div.style.width = "300px";
         div.style.flex = "0 0 33.3";
@@ -73,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cart.forEach((carrinho) => {
         carrinho.style.cursor="pointer";
         carrinho.addEventListener('click', () => {
-        const close = carrinho.closest('.produto');
+        const close = carrinho.closest('#produto');
         const name = close.getAttribute('name');
         const preco = close.getAttribute('preco');
         const img = close.getAttribute('img')
