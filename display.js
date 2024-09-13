@@ -107,32 +107,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
         secao.appendChild(div)
     })
-    const cart = document.querySelectorAll('.cart');
-    cart.forEach((carrinho) => {
-        carrinho.style.cursor="pointer";
+    let cart = JSON.parse(localStorage.getItem("display")) || []; // Carrega o carrinho existente ou inicializa como array vazio
+    
+    const cartElements = document.querySelectorAll('.cart'); //todas as imagens de compra de carrinho .cart
+
+    function atualizarInfo(produto) {
+        cart.push(produto); // Adiciona o novo produto ao carrinho/ array do local strorage
+        localStorage.setItem("display", JSON.stringify(cart)); // Salva o carrinho atualizado no localStorage
+        adicionarCarrinho(cart); // Atualiza a exibição do carrinho
+    }
+
+    cartElements.forEach((carrinho) => {
+        carrinho.style.cursor = "pointer";
         carrinho.addEventListener('click', () => {
+            const close = carrinho.closest('#produto');
+            const name = close.getAttribute('name');
+            const preco = close.getAttribute('preco');
+            const img = close.getAttribute('img');
+            const produto = { name, preco, img };
+            atualizarInfo(produto);
+        });
+    });
+
+    function adicionarCarrinho(carrinho) {
+        const ul = document.getElementById('add-list');
+        ul.innerHTML = ''; // Limpa o conteúdo existente
+        //itera o array do localstorage
+        carrinho.forEach(item => {
+            if (item.hasOwnProperty('img') && item.hasOwnProperty('name') && item.hasOwnProperty('preco')) {
+                const li = document.createElement('li');
+                li.style.display = "flex";
+                li.style.justifyContent = 'flexStart';
+                li.innerHTML = `
+                    <img style="height:100px;width:100px" src="${item.img}" />
+                    <div style="display: flex; align-items: center; flex-direction: column">
+                        <h2 style="height: auto; width: 200px;">${item.name}</h2>
+                        <p>${item.preco}</p>
+                    </div>
+                `;
+                ul.style.padding = '0 50px';
+                ul.appendChild(li);
+            }
+        });
+    }
+  /*  let produto = [];
+let inforecuperada = [];
+const cart = document.querySelectorAll('.cart');
+
+function atualizarInfo() {
+    inforecuperada = [...produto]; // Atualiza globalmente
+    console.log('Informação atualizada:', inforecuperada);
+    adicionarCarrinho(inforecuperada);
+    produto.shift(); // Remove o primeiro elemento após passar para adicionarCarrinho
+    localStorage.setItem("display", JSON.stringify(inforecuperada))
+    console.log('Informação após remoção do primeiro item:', inforecuperada);
+}
+
+cart.forEach((carrinho) => {
+    carrinho.style.cursor = "pointer";
+    carrinho.addEventListener('click', () => {
         const close = carrinho.closest('#produto');
         const name = close.getAttribute('name');
         const preco = close.getAttribute('preco');
-        const img = close.getAttribute('img')
-        const produto = {name, preco, img}
-        adicionarCarrinho(produto) 
-        })
-        
-    })
-    function adicionarCarrinho(produto){
-        const ul = document.getElementById('add-list');
-        const li = document.createElement('li');
-        li.style.display = "flex";
-        li.style.justifyContent = 'flexStart'
-        li.innerHTML = `
-            <img style="height:100px;width:100px" src="${produto.img}" />
-            <div style="display: 'flex'; align-items: 'center'; flex-direction: 'column'">
-                <h2 style=" height: auto; width: 200px; '">${produto.name}</h2>
-                <p>${produto.preco}</p>
-            </div>
-        `
-        ul.style.padding = '0 50px'
-        ul.appendChild(li)
-    }
+        const img = close.getAttribute('img');
+        produto.push({ name, preco, img });
+        atualizarInfo();
+    });
+});
+
+function adicionarCarrinho(inforecuperada){
+    console.log("passou: ", inforecuperada);
+    inforecuperada.forEach(item => {
+        if (item.hasOwnProperty('img') && item.hasOwnProperty('name') && item.hasOwnProperty('preco')) {
+            const ul = document.getElementById('add-list');
+            const li = document.createElement('li');
+            li.style.display = "flex";
+            li.style.justifyContent = 'flexStart';
+            li.innerHTML = `
+                <img style="height:100px;width:100px" src="${item.img}" />
+                <div style="display: flex; align-items: center; flex-direction: column">
+                    <h2 style="height: auto; width: 200px;">${item.name}</h2>
+                    <p>${item.preco}</p>
+                </div>
+            `;
+            ul.style.padding = '0 50px';
+            ul.appendChild(li);
+        }
+    });
+}
+*/
 })

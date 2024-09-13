@@ -1,4 +1,6 @@
-//Objeto dos produtos
+/*Lógica para por os produtos na section#produtos */
+document.addEventListener('DOMContentLoaded', () => {
+    //Objeto dos produtos
 const produtos_variados = [
     {
         name: 'Calça Jogguer masculina',
@@ -111,24 +113,22 @@ const produtos_variados = [
         preco: 22.12
     },
 ]
-/*Lógica para por os produtos na section#produtos */
-document.addEventListener('DOMContentLoaded', () => {
     //Pega o id da seção 'produtos'
     const produtos = document.getElementById("produtos");
     //Percorre o array de objetos para construir a interface
     produtos_variados.forEach(pred => {
-    const div = document.createElement('div');
-    div.className = `seção`
-    div.setAttribute('preco', pred.preco)
-    div.setAttribute('nome', pred.name)
-    div.setAttribute('img', pred.src)
-    div.style.margin = "10px 10px"
-    div.innerHTML = `
-    <img src="${pred.src}" />
-    <h2 style="font-syze: 10px">${pred.name}</h2>
-    <p>R$${pred.preco}</p>
-    <button class="add" style="cursor: pointer; background-color: #00ff00; border-color: transparent; border-radius: 8px; padding: '10px 3px' "> Adicionar ao carrinho </button>
-    `;
+        const div = document.createElement('div');
+        div.id = `seção`
+        div.setAttribute('preco', pred.preco)
+        div.setAttribute('name', pred.name)
+        div.setAttribute('img', pred.src)
+        div.style.margin = "10px 10px"
+        div.innerHTML = `
+        <img src="${pred.src}" />
+        <h2 style="font-syze: 10px">${pred.name}</h2>
+        <p>R$${pred.preco}</p>
+        <button class="add" style="cursor: pointer; background-color: #00ff00; border-color: transparent; border-radius: 8px; padding: '10px 3px' "> Adicionar ao carrinho </button>
+        `;
     produtos.appendChild(div)
     });
     /* imagens do carrossel */
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonNext = document.querySelector('.carousel-button.next');
     //botão de anterior
     const buttonPrev = document.querySelector('.carousel-button.prev');
-    //tamanho total de todos os slides(imagens)
+    //tamanho total de todos os slides(imagens) de carousel_slide
     let totalSlides= carousel_slide.length;
     //slide atual
     let currentSlide = 0;
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCarousel (){
         //pega a classe do container dos carroséis
         const carousel_container = document.querySelector('.carousel-container');
-        //ajusta a propriedade dele para 100%
+        //ajusta a propriedade de transform dele para -currentSlide * 100%
         carousel_container.style.transform = `translateX(${-currentSlide * 100}%)`
     }
     buttonNext.addEventListener('click', passar)
